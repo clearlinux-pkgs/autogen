@@ -1,0 +1,10 @@
+--- autogen-5.18.5/agen5/autogen.c~	2015-04-17 22:33:14.000000000 -0400
++++ autogen-5.18.5/agen5/autogen.c	2015-09-20 12:20:02.098052987 -0400
+@@ -121,7 +121,6 @@
+ int
+ main(int argc, char ** argv)
+ {
+-    setlocale(LC_ALL, "");
+     setup_signals(ignore_signal, SIG_DFL, catch_sig_and_bail);
+     optionSaveState(&autogenOptions);
+     trace_fp = stderr;
