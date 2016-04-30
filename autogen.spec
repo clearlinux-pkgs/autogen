@@ -4,7 +4,7 @@
 #
 Name     : autogen
 Version  : 5.18.6
-Release  : 8
+Release  : 9
 URL      : http://ftp.gnu.org/gnu/autogen/rel5.18.6/autogen-5.18.6.tar.gz
 Source0  : http://ftp.gnu.org/gnu/autogen/rel5.18.6/autogen-5.18.6.tar.gz
 Summary  : No detailed summary available
