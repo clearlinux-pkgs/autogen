@@ -1,0 +1,35 @@
+2016-04-20  Bruce Korb  <bkorb@gnu.org>
+
+	NEWS
+
+2016-04-20  Bruce Korb  <bkorb@gnu.org>
+
+	Fix mal-formed usage text
+	Option "values" beyond the range of single letters were supposed to
+	indicate that there was no flag character for the option.  The
+	"IS_GRAPHIC_CHAR()" macro did not properly test for this.
+
+	* agen5/agUtils.c (span_quote): remove unneeded braces
+	* autoopts/cook.c (nl_count): new function to clarify code
+	  (contiguous_quote): clarify with new function
+	* autoopts/usage.c (GRAPH_CH): new macro for testing for graphic chars.
+	  Will not stumble on values beyond 0xFF.
+
+2016-03-08  Bruce Korb  <bkorb@gnu.org>
+
+	update the NEWS
+
+	update the NEWS
+
+	Ensure testing vars are unset
+	The CGI variables CONTENT_LENGTH REQUEST_METHOD and QUERY_STRING
+	need to be unset before starting a test suite.
+
+2016-03-07  Bruce Korb  <bkorb@gnu.org>
+
+	happy new year & de-uglifications
+
+2016-03-06  Bruce Korb  <bkorb@gnu.org>
+
+	formatting changes
+
