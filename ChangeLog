@@ -1,3 +1,48 @@
+2016-05-24  Bruce Korb  <bkorb@gnu.org>
+
+	another adjustment for abort() call
+
+	another adjustment for abort() call
+
+	adjust for abort() call
+
+2016-05-24  Bruce Korb  <bkorb@gnu.org>
+
+	NUL terminate CGI def text
+	Usually (99.44% of the time), CGI text gets NUL teriminated.
+	However, sometimes not.  Fix it.
+
+	* agen5/autogen.c (ag_abend_at): call abort()
+	* agen5/agCgi.c (ENV_TABLE) reorder to make easier to debug
+	* agen5/cgi-fsm.c (cgi_run_fsm): add NUL byte on separation transition.
+
+2016-05-23  Bruce Korb  <bkorb@gnu.org>
+
+	NUL terminate CGI def text
+	Usually (99.44% of the time), CGI text gets NUL teriminated.
+	However, sometimes not.  Fix it.
+
+	* agen5/autogen.c (ag_abend_at): call abort()
+	* agen5/agCgi.c (ENV_TABLE) reorder to make easier to debug
+	* agen5/cgi-fsm.c (cgi_run_fsm): add NUL byte on separation transition.
+
+2016-05-23  Bruce Korb  <bkorb@gnu.org>
+
+	add a couple of static procs to fwd decs
+
+	remove some Guile wrappers
+	Some parts of the Guile interface have stabilized in the currently
+	supported versions of Guile (1.8 and later).  Remove several
+	wrappers for these functions.
+
+2016-05-19  Bruce Korb  <bkorb@gnu.org>
+
+	TODO: add manywarnings gnulib module
+
+2016-05-09  Bruce Korb  <bkorb@gnu.org>
+
+	remove quotes for disabled options in man pages
+
 2016-04-20  Bruce Korb  <bkorb@gnu.org>
 
 	NEWS
