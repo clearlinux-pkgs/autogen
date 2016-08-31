@@ -1,4 +1,15 @@
-New in 5.18.10 - May 2016
+New in 5.18.12 - August 2016
+
+* several configury fixes to enable cross platform building.
+* fompletion of a change in "char-mapper" to enable bootstrapping
+
+New in 5.18.11 May 2016
+
+* fix up tests that got broken in 5.18.10
+* in the make gperf script, LDFLAGS sometimes rely on CFLAGS
+* correct misuse of guile version information in configure
+
+New in 5.18.10 May 2016
 
 * NUL terminate CGI definitions text
 
