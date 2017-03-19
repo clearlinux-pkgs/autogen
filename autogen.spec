@@ -6,7 +6,7 @@
 #
 Name     : autogen
 Version  : 5.18.12
-Release  : 13
+Release  : 14
 URL      : http://ftp.gnu.org/gnu/autogen/rel5.18.12/autogen-5.18.12.tar.gz
 Source0  : http://ftp.gnu.org/gnu/autogen/rel5.18.12/autogen-5.18.12.tar.gz
 Source99 : http://ftp.gnu.org/gnu/autogen/rel5.18.12/autogen-5.18.12.tar.gz.sig
