@@ -1,0 +1,26 @@
+Configure miss: if malloc debugging is wanted
+Configure miss: sys/procset.h usability
+Configure miss: sys/procset.h presence
+Configure miss: sys/procset.h
+Configure miss: runetype.h
+Configure miss: uint_t
+Configure miss: pathfind in -lgen
+Configure miss: gettext in -lintl
+Configure miss: whether statically link autogen to libopts
+Configure miss: whether with-libxml2 was specified
+Configure miss: whether with-libxml2-cflags was specified
+Configure miss: whether with-libxml2-libs was specified
+Configure miss: whether libxml2 can be linked with
+Configure miss: whether sysinfo(2) is Solaris
+Configure miss: whether specify an autogen timeout
+Configure miss: whether strcspn matches prototype and works
+Configure miss: whether wanting autogen debugging
+Configure miss: whether name of the packager of this software is supplied
+Configure miss: whether packager-specific version information is supplied
+Configure miss: whether bug reporting URI/e-mail/etc. is supplied
+Configure miss: whether a reg expr header is specified
+Configure miss: whether with-libregex was specified
+Configure miss: whether with-libregex-cflags was specified
+Configure miss: whether with-libregex-libs was specified
+Configure miss: whether pathfind(3) works
+Configure miss: if malloc debugging is wanted
