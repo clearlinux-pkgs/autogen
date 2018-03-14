@@ -1,0 +1,25 @@
+# This file contains recursive sources that require this package
+adwaita-icon-theme
+babl
+cargo
+cheese
+edk2
+faba-icon-theme
+filesystem
+gcc
+gdk-pixbuf
+gedit
+gimp
+gst-plugins-good
+gtk+
+hexchat
+libffi
+libgfortran-avx
+libgfortran-compat-soname3
+libmediaart
+librsvg
+moka-icon-theme
+proc-macro2
+rustc
+totem
+unicode-xid
