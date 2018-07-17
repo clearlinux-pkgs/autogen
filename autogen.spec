@@ -5,18 +5,19 @@
 # Source0 file verified with key 0xC9EF76DEB74EE762 (bkorb@gnu.org)
 #
 Name     : autogen
-Version  : 5.18.12
-Release  : 25
-URL      : https://mirrors.kernel.org/gnu/autogen/rel5.18.12/autogen-5.18.12.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/autogen/rel5.18.12/autogen-5.18.12.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/autogen/rel5.18.12/autogen-5.18.12.tar.gz.sig
+Version  : 5.18.14
+Release  : 26
+URL      : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
+Source99 : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-3.0 LGPL-3.0
 Requires: autogen-bin
 Requires: autogen-lib
 Requires: autogen-data
-Requires: autogen-doc
+Requires: autogen-license
+Requires: autogen-man
 BuildRequires : gc-dev
 BuildRequires : gmp-dev
 BuildRequires : guile
@@ -38,6 +39,8 @@ large callout procedure table and associated lookup tables.
 Summary: bin components for the autogen package.
 Group: Binaries
 Requires: autogen-data
+Requires: autogen-license
+Requires: autogen-man
 
 %description bin
 bin components for the autogen package.
@@ -63,25 +66,34 @@ Provides: autogen-devel
 dev components for the autogen package.
 
 
-%package doc
-Summary: doc components for the autogen package.
-Group: Documentation
-
-%description doc
-doc components for the autogen package.
-
-
 %package lib
 Summary: lib components for the autogen package.
 Group: Libraries
 Requires: autogen-data
+Requires: autogen-license
 
 %description lib
 lib components for the autogen package.
 
 
+%package license
+Summary: license components for the autogen package.
+Group: Default
+
+%description license
+license components for the autogen package.
+
+
+%package man
+Summary: man components for the autogen package.
+Group: Default
+
+%description man
+man components for the autogen package.
+
+
 %prep
-%setup -q -n autogen-5.18.12
+%setup -q -n autogen-5.18.14
 %patch1 -p1
 
 %build
@@ -89,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1521000708
+export SOURCE_DATE_EPOCH=1531843299
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -101,8 +113,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1521000708
+export SOURCE_DATE_EPOCH=1531843299
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/autogen
+cp COPYING %{buildroot}/usr/share/doc/autogen/COPYING
+cp pkg/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
+cp pkg/libopts/COPYING.lgplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
+cp pkg/libopts/COPYING.gplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.gplv3
 %make_install
 
 %files
@@ -134,8 +151,6 @@ rm -rf %{buildroot}
 /usr/share/autogen/autoopts.m4
 /usr/share/autogen/bits.tpl
 /usr/share/autogen/cmd-doc.tlib
-/usr/share/autogen/confmacs.tlib
-/usr/share/autogen/conftest.tpl
 /usr/share/autogen/def2pot.tpl
 /usr/share/autogen/fsm-macro.tlib
 /usr/share/autogen/fsm-trans.tlib
@@ -177,12 +192,45 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/autoopts.pc
 /usr/share/aclocal/*.m4
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libopts.so.25
 /usr/lib64/libopts.so.25.16.1
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/autogen/COPYING
+/usr/share/doc/autogen/pkg_libopts_COPYING.gplv3
+/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
+/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/autogen.1
+/usr/share/man/man1/autoopts-config.1
+/usr/share/man/man1/columns.1
+/usr/share/man/man1/getdefs.1
+/usr/share/man/man3/ao_string_tokenize.3
+/usr/share/man/man3/configFileLoad.3
+/usr/share/man/man3/optionFileLoad.3
+/usr/share/man/man3/optionFindNextValue.3
+/usr/share/man/man3/optionFindValue.3
+/usr/share/man/man3/optionFree.3
+/usr/share/man/man3/optionGetValue.3
+/usr/share/man/man3/optionLoadLine.3
+/usr/share/man/man3/optionMemberList.3
+/usr/share/man/man3/optionNextValue.3
+/usr/share/man/man3/optionOnlyUsage.3
+/usr/share/man/man3/optionPrintVersion.3
+/usr/share/man/man3/optionPrintVersionAndReturn.3
+/usr/share/man/man3/optionProcess.3
+/usr/share/man/man3/optionRestore.3
+/usr/share/man/man3/optionSaveFile.3
+/usr/share/man/man3/optionSaveState.3
+/usr/share/man/man3/optionUnloadNested.3
+/usr/share/man/man3/optionVersion.3
+/usr/share/man/man3/strequate.3
+/usr/share/man/man3/streqvcmp.3
+/usr/share/man/man3/streqvmap.3
+/usr/share/man/man3/strneqvcmp.3
+/usr/share/man/man3/strtransform.3
