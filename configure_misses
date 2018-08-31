@@ -1,4 +1,7 @@
 Configure miss: if malloc debugging is wanted
+Configure miss: libio.h usability
+Configure miss: libio.h presence
+Configure miss: libio.h
 Configure miss: sys/procset.h usability
 Configure miss: sys/procset.h presence
 Configure miss: sys/procset.h

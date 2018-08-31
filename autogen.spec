@@ -6,7 +6,7 @@
 #
 Name     : autogen
 Version  : 5.18.14
-Release  : 26
+Release  : 27
 URL      : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source99 : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz.sig
@@ -18,6 +18,7 @@ Requires: autogen-lib
 Requires: autogen-data
 Requires: autogen-license
 Requires: autogen-man
+Requires: guile
 BuildRequires : gc-dev
 BuildRequires : gmp-dev
 BuildRequires : guile
@@ -101,7 +102,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531843299
+export SOURCE_DATE_EPOCH=1535735751
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -113,13 +114,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1531843299
+export SOURCE_DATE_EPOCH=1535735751
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/autogen
 cp COPYING %{buildroot}/usr/share/doc/autogen/COPYING
-cp pkg/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
-cp pkg/libopts/COPYING.lgplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
+cp agen5/test/license.test %{buildroot}/usr/share/doc/autogen/agen5_test_license.test
 cp pkg/libopts/COPYING.gplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.gplv3
+cp pkg/libopts/COPYING.lgplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
+cp pkg/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
 %make_install
 
 %files
@@ -191,25 +193,6 @@ cp pkg/libopts/COPYING.gplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPY
 /usr/lib64/libopts.so
 /usr/lib64/pkgconfig/autoopts.pc
 /usr/share/aclocal/*.m4
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/libopts.so.25
-/usr/lib64/libopts.so.25.16.1
-
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/autogen/COPYING
-/usr/share/doc/autogen/pkg_libopts_COPYING.gplv3
-/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
-/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man1/autogen.1
-/usr/share/man/man1/autoopts-config.1
-/usr/share/man/man1/columns.1
-/usr/share/man/man1/getdefs.1
 /usr/share/man/man3/ao_string_tokenize.3
 /usr/share/man/man3/configFileLoad.3
 /usr/share/man/man3/optionFileLoad.3
@@ -234,3 +217,23 @@ cp pkg/libopts/COPYING.gplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPY
 /usr/share/man/man3/streqvmap.3
 /usr/share/man/man3/strneqvcmp.3
 /usr/share/man/man3/strtransform.3
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libopts.so.25
+/usr/lib64/libopts.so.25.16.1
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/autogen/COPYING
+/usr/share/doc/autogen/agen5_test_license.test
+/usr/share/doc/autogen/pkg_libopts_COPYING.gplv3
+/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
+/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/autogen.1
+/usr/share/man/man1/autoopts-config.1
+/usr/share/man/man1/columns.1
+/usr/share/man/man1/getdefs.1
