@@ -6,7 +6,7 @@
 #
 Name     : autogen
 Version  : 5.18.14
-Release  : 28
+Release  : 29
 URL      : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source99 : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz.sig
