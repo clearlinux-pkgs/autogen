@@ -6,23 +6,24 @@
 #
 Name     : autogen
 Version  : 5.18.14
-Release  : 29
+Release  : 30
 URL      : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz.sig
+Source1  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-3.0 LGPL-3.0
-Requires: autogen-bin
-Requires: autogen-lib
-Requires: autogen-data
-Requires: autogen-license
-Requires: autogen-man
+Requires: autogen-bin = %{version}-%{release}
+Requires: autogen-data = %{version}-%{release}
+Requires: autogen-lib = %{version}-%{release}
+Requires: autogen-license = %{version}-%{release}
+Requires: autogen-man = %{version}-%{release}
 Requires: guile
 BuildRequires : gc-dev
 BuildRequires : gmp-dev
 BuildRequires : guile
 BuildRequires : guile-dev
+BuildRequires : intltool-dev
 BuildRequires : libxml2-dev
 BuildRequires : zlib-dev
 Patch1: 0001-Allow-guile-2.2-as-a-valid-version.patch
@@ -39,9 +40,8 @@ large callout procedure table and associated lookup tables.
 %package bin
 Summary: bin components for the autogen package.
 Group: Binaries
-Requires: autogen-data
-Requires: autogen-license
-Requires: autogen-man
+Requires: autogen-data = %{version}-%{release}
+Requires: autogen-license = %{version}-%{release}
 
 %description bin
 bin components for the autogen package.
@@ -58,10 +58,11 @@ data components for the autogen package.
 %package dev
 Summary: dev components for the autogen package.
 Group: Development
-Requires: autogen-lib
-Requires: autogen-bin
-Requires: autogen-data
-Provides: autogen-devel
+Requires: autogen-lib = %{version}-%{release}
+Requires: autogen-bin = %{version}-%{release}
+Requires: autogen-data = %{version}-%{release}
+Provides: autogen-devel = %{version}-%{release}
+Requires: autogen = %{version}-%{release}
 
 %description dev
 dev components for the autogen package.
@@ -70,8 +71,8 @@ dev components for the autogen package.
 %package lib
 Summary: lib components for the autogen package.
 Group: Libraries
-Requires: autogen-data
-Requires: autogen-license
+Requires: autogen-data = %{version}-%{release}
+Requires: autogen-license = %{version}-%{release}
 
 %description lib
 lib components for the autogen package.
@@ -95,33 +96,41 @@ man components for the autogen package.
 
 %prep
 %setup -q -n autogen-5.18.14
+cd %{_builddir}/autogen-5.18.14
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1535735751
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1582934397
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1535735751
+export SOURCE_DATE_EPOCH=1582934397
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/autogen
-cp COPYING %{buildroot}/usr/share/doc/autogen/COPYING
-cp agen5/test/license.test %{buildroot}/usr/share/doc/autogen/agen5_test_license.test
-cp pkg/libopts/COPYING.gplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.gplv3
-cp pkg/libopts/COPYING.lgplv3 %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
-cp pkg/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
+mkdir -p %{buildroot}/usr/share/package-licenses/autogen
+cp %{_builddir}/autogen-5.18.14/COPYING %{buildroot}/usr/share/package-licenses/autogen/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/autogen-5.18.14/pkg/libopts/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/autogen/4265ddd72c157ba3bf0075e60827ed0ce1e0004e
+cp %{_builddir}/autogen-5.18.14/pkg/libopts/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/autogen/f12fa50100c6999f56ca8181cf0868c7002af339
+cp %{_builddir}/autogen-5.18.14/pkg/libopts/COPYING.mbsd %{buildroot}/usr/share/package-licenses/autogen/49326687052363b44fe7cb1abfcd45724ced00a6
 %make_install
 
 %files
@@ -224,15 +233,14 @@ cp pkg/libopts/COPYING.mbsd %{buildroot}/usr/share/doc/autogen/pkg_libopts_COPYI
 /usr/lib64/libopts.so.25.16.1
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/autogen/COPYING
-/usr/share/doc/autogen/agen5_test_license.test
-/usr/share/doc/autogen/pkg_libopts_COPYING.gplv3
-/usr/share/doc/autogen/pkg_libopts_COPYING.lgplv3
-/usr/share/doc/autogen/pkg_libopts_COPYING.mbsd
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/autogen/4265ddd72c157ba3bf0075e60827ed0ce1e0004e
+/usr/share/package-licenses/autogen/49326687052363b44fe7cb1abfcd45724ced00a6
+/usr/share/package-licenses/autogen/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+/usr/share/package-licenses/autogen/f12fa50100c6999f56ca8181cf0868c7002af339
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/autogen.1
 /usr/share/man/man1/autoopts-config.1
 /usr/share/man/man1/columns.1
