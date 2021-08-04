@@ -1,6 +1,7 @@
 # This file contains recursive sources that require this package
+compat-gcc-10
 gcc
 gcc7
 gcc8
-libgfortran-avx
+gcc9
 mingw-gcc

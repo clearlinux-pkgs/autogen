@@ -6,7 +6,7 @@
 #
 Name     : autogen
 Version  : 5.18.14
-Release  : 30
+Release  : 31
 URL      : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz.sig
@@ -104,15 +104,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582934397
+export SOURCE_DATE_EPOCH=1628097577
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -124,7 +124,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1582934397
+export SOURCE_DATE_EPOCH=1628097577
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/autogen
 cp %{_builddir}/autogen-5.18.14/COPYING %{buildroot}/usr/share/package-licenses/autogen/8624bcdae55baeef00cd11d5dfcfa60f68710a02

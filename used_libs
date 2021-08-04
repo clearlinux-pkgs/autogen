@@ -1,6 +1,4 @@
 libc.so.6
-libdl.so.2
 libgc.so.1
 libguile-2.2.so.1
 libm.so.6
-libpthread.so.0
