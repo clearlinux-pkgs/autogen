@@ -6,7 +6,7 @@
 #
 Name     : autogen
 Version  : 5.18.14
-Release  : 31
+Release  : 32
 URL      : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/autogen/rel5.18.14/autogen-5.18.14.tar.gz.sig
@@ -19,14 +19,11 @@ Requires: autogen-lib = %{version}-%{release}
 Requires: autogen-license = %{version}-%{release}
 Requires: autogen-man = %{version}-%{release}
 Requires: guile
-BuildRequires : gc-dev
-BuildRequires : gmp-dev
-BuildRequires : guile
 BuildRequires : guile-dev
 BuildRequires : intltool-dev
 BuildRequires : libxml2-dev
 BuildRequires : zlib-dev
-Patch1: 0001-Allow-guile-2.2-as-a-valid-version.patch
+Patch1: 0001-Allow-guile-2-as-a-valid-version.patch
 
 %description
 This is AutoGen, an automated text file generator.  It was inspired out of
@@ -104,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1628097577
+export SOURCE_DATE_EPOCH=1647823462
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -124,7 +121,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1628097577
+export SOURCE_DATE_EPOCH=1647823462
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/autogen
 cp %{_builddir}/autogen-5.18.14/COPYING %{buildroot}/usr/share/package-licenses/autogen/8624bcdae55baeef00cd11d5dfcfa60f68710a02

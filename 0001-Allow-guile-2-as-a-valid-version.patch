@@ -1,9 +1,12 @@
-From c53b3d1117559a75750170b8b724d9df2c74a743 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Icarus Sparry <icarus.w.sparry@intel.com>
 Date: Mon, 21 Aug 2017 14:50:00 -0700
-Subject: [PATCH] Allow guile 2.2 as a valid version
+Subject: [PATCH] Allow guile > 2 as a valid version
+
+[2022-03-18]: Update patch to support guile 3 as well.
 
 Signed-off-by: Icarus Sparry <icarus.w.sparry@intel.com>
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
 ---
  agen5/guile-iface.h | 5 +----
  configure           | 2 +-
@@ -32,18 +35,15 @@ index 350ccb3..9fb137d 100644
  
  #endif /* MUTATING_GUILE_IFACE_H_GUARD */
 diff --git a/configure b/configure
-index fcd5d1f..a85ec77 100755
+index cc0b218..e39c702 100755
 --- a/configure
 +++ b/configure
-@@ -14198,7 +14198,7 @@ $as_echo "no" >&6; }
+@@ -14734,7 +14734,7 @@ $as_echo "no" >&6; }
  		PKG_CONFIG=""
  	fi
  fi
 -  _guile_versions_to_search="2.0 1.8"
-+  _guile_versions_to_search="2.2 2.0 1.8"
++  _guile_versions_to_search="3.0 2.2 2.0 1.8"
    if test -n "$GUILE_EFFECTIVE_VERSION"; then
      _guile_tmp=""
      for v in $_guile_versions_to_search; do
--- 
-2.14.1
-

@@ -1,8 +1,5 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 guile-dev
-guile
-gmp-dev
-gc-dev
 libxml2-dev
 zlib-dev
