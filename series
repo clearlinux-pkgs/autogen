@@ -1,2 +1,2 @@
-#build.patch
-0001-Allow-guile-2-as-a-valid-version.patch
+0001-Enable-guile-3.patch
+0002-make-man-page-tars-reproducable.patch

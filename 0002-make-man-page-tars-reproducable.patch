@@ -1,0 +1,26 @@
+From b33995c2412aa1c4f1921bd6ecbc9e2f7c79aeab Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Tue, 10 Oct 2023 14:40:04 -0700
+Subject: [PATCH 2/2] make man page tars reproducable
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ pkg/libopts/mklibsrc.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pkg/libopts/mklibsrc.sh b/pkg/libopts/mklibsrc.sh
+index 0cad4dc..247ff6e 100644
+--- a/pkg/libopts/mklibsrc.sh
++++ b/pkg/libopts/mklibsrc.sh
+@@ -133,7 +133,7 @@ echo ! tar cvf ${tag}.${sfx} ${tag}
+ rbopts=""
+ [ -z "$SOURCE_DATE_EPOCH" ] \
+     || ! tar --help|grep -q sort= \
+-    || rbopts="--sort=name --format=gnu --clamp-mtime --mtime @$SOURCE_DATE_EPOCH"
++    || rbopts="--sort=name --format=gnu --clamp-mtime --mtime @$SOURCE_DATE_EPOCH --owner=root --group=root --mode=u+w,g-w,a+r"
+ 
+ tar cvf - $rbopts ${tag} | \
+     $gz > ${top_builddir}/autoopts/${tag}.${sfx}
+-- 
+2.42.0
+
